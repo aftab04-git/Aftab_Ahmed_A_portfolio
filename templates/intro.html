@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loading & Video</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0a0f1e;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #loader {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #0a0f1e;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s;
+        }
+        #loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loader-balls {
+            display: flex;
+            gap: 20px;
+        }
+        .loader-balls span {
+            font-size: 28px;
+            animation: bounce 0.8s ease-in-out infinite;
+        }
+        .loader-balls span:nth-child(1) { animation-delay: 0s; }
+        .loader-balls span:nth-child(2) { animation-delay: 0.2s; }
+        .loader-balls span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+        .terminal-text {
+            margin-top: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #4fc3f7;
+            text-align: left;
+            opacity: 0;
+            animation: fadeInTerminal 0.5s ease 0.5s forwards;
+        }
+        .terminal-text p {
+            margin: 2px 0;
+            opacity: 0;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        #line1 { animation: typeLine 0.5s steps(30) 0.8s forwards; }
+        #line2 { animation: typeLine 0.5s steps(30) 1.4s forwards; }
+        #line3 { animation: typeLine 0.5s steps(30) 2.0s forwards; }
+        @keyframes typeLine {
+            0% { opacity: 0; width: 0; }
+            1% { opacity: 1; }
+            100% { opacity: 1; width: 100%; }
+        }
+        @keyframes fadeInTerminal {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .blink-cursor { animation: blink 0.8s step-end infinite; }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        #video-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 10;
+            background: #000;
+            opacity: 0;
+            transition: opacity 0.8s;
+        }
+        #video-container.show { opacity: 1; }
+        #video-container.fade-out { opacity: 0; pointer-events: none; }
+        .glitch-active {
+            animation: glitch 0.6s ease forwards;
+        }
+        @keyframes glitch {
+            0% { transform: translate(0); opacity: 1; filter: hue-rotate(0deg); }
+            10% { transform: translate(-8px, 4px); opacity: 0.9; filter: hue-rotate(90deg); }
+            20% { transform: translate(8px, -4px); opacity: 1; filter: hue-rotate(180deg); }
+            30% { transform: translate(-4px, 8px); opacity: 0.9; filter: hue-rotate(270deg); }
+            40% { transform: translate(4px, -8px); opacity: 1; filter: hue-rotate(360deg); }
+            50% { transform: translate(-10px, 2px); opacity: 0.8; clip-path: inset(20% 0 60% 0); }
+            60% { transform: translate(10px, -2px); opacity: 1; clip-path: inset(60% 0 20% 0); }
+            70% { transform: translate(-6px, 6px); opacity: 0.9; clip-path: inset(40% 0 40% 0); }
+            80% { transform: translate(6px, -6px); opacity: 1; filter: hue-rotate(720deg); }
+            90% { transform: translate(0); opacity: 0.5; filter: brightness(2); }
+            100% { transform: translate(0); opacity: 0; }
+        }
+        #kickVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div id="loader">
+        <div class="loader-balls">
+            <span>⚽</span><span>⚽</span><span>⚽</span>
+        </div>
+        <div class="terminal-text">
+            <p id="line1">> Loading portfolio...</p>
+            <p id="line2">> Initializing the main character to this world.</p>
+            <p id="line3" class="blink-cursor">> Are you Ready..... █</p>
+        </div>
+    </div>
+    <div id="video-container">
+        <video id="kickVideo" muted playsinline>
+           <source src="{{ url_for('static', filename='assets/videos/kick.mp4') }}" type="video/mp4" />
+        </video>
+    </div>
+    <script>
+        const loader = document.getElementById('loader');
+        const videoContainer = document.getElementById('video-container');
+        const video = document.getElementById('kickVideo');
+        const startTime = Date.now();
+
+        function showVideo() {
+            loader.classList.add('hidden');
+            videoContainer.classList.add('show');
+            video.play().catch(e => console.log('Autoplay prevented:', e));
+        }
+        function checkMinimumTime() {
+            const elapsed = Date.now() - startTime;
+            const remaining = 2000 - elapsed;
+            if (remaining <= 0) {
+                showVideo();
+            } else {
+                setTimeout(showVideo, remaining);
+            }
+        }
+        checkMinimumTime();
+
+        video.addEventListener('ended', function() {
+            videoContainer.classList.add('glitch-active');
+            setTimeout(function() {
+                videoContainer.classList.add('fade-out');
+                setTimeout(function() {
+                    sessionStorage.setItem('cameFromIntro', 'true');
+                    window.location.href = '/portfolio';
+                }, 800);
+            }, 600);
+        });
+
+        setTimeout(function() {
+            if (!videoContainer.classList.contains('fade-out')) {
+                videoContainer.classList.add('glitch-active');
+                setTimeout(function() {
+                    videoContainer.classList.add('fade-out');
+                    setTimeout(function() {
+                        sessionStorage.setItem('cameFromIntro', 'true');
+                        window.location.href = '/portfolio';
+                    }, 800);
+                }, 600);
+            }
+        }, 15000);
+    </script>
+</body>
+</html>
