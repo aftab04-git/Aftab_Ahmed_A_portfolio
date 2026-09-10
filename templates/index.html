@@ -14,46 +14,53 @@
     <div id="cinematic-bg">
         <div id="starfield"></div>
         <div class="spotlight"></div>
-        <div class="dust"></div>
-        <div class="dust"></div>
-        <div class="dust"></div>
-        <div class="dust"></div>
-        <div class="dust"></div>
-        <div class="dust"></div>
-        <div class="dust"></div>
-        <div class="dust"></div>
+        <div class="dust"></div><div class="dust"></div><div class="dust"></div>
+        <div class="dust"></div><div class="dust"></div><div class="dust"></div>
+        <div class="dust"></div><div class="dust"></div>
         <div class="floor-glow"></div>
     </div>
 
-    <!-- ===== ANIMATED HERO OVERLAY ===== -->
-    <div id="heroOverlay">
-        <div id="heroTextContainer">
-            <h1 id="heroName">Aftab Ahmed A</h1>
-            <p id="heroSub">Software Engineer</p>
+    <!-- ===== MUTE TOGGLE ===== -->
+    <button id="muteToggle" aria-label="Toggle sound">🔊</button>
+
+    <!-- ===== LOADER OVERLAY ===== -->
+    <div id="loaderOverlay">
+        <div class="loader-balls">
+            <span>⚽</span><span>⚽</span><span>⚽</span>
+        </div>
+        <div class="loader-dialogue">
+            <p class="dialogue-line" data-delay="200">INITIALIZING...</p>
+            <p class="dialogue-line" data-delay="900">LOADING THE DEVELOPER</p>
+            <p class="dialogue-line" data-delay="1600">WELCOME TO MY WORLD</p>
         </div>
     </div>
 
-    <!-- ===== NAVBAR ===== -->
-<nav id="navbar">
-    <a class="nav-logo" href="/intro" id="navLogo">Aftab<span>.</span></a>
-
-    <!-- Centered navigation links -->
-    <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#journey">Journey</a></li>
-        <li><a href="#education">Education</a></li>
-    </ul>
-
-    <!-- Right side: CTA button + hamburger -->
-    <div class="nav-right">
-        <a href="#contact" class="nav-cta">Get in touch</a>
-        <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
+    <!-- ===== HERO OVERLAY (typing name) ===== -->
+    <div id="heroOverlay" class="hidden">
+        <div id="heroTextContainer">
+            <h1 id="heroName"></h1>
+            <p id="heroSub">Software Engineer</p>
+        </div>
+        <div class="spotlight-sweep"></div>
     </div>
-</nav>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav id="navbar">
+        <a class="nav-logo" href="#" id="navLogo">Aftab<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#journey">Journey</a></li>
+            <li><a href="#education">Education</a></li>
+        </ul>
+        <div class="nav-right">
+            <a href="#contact" class="nav-cta">Get in touch</a>
+            <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
 
     <div class="mobile-menu" id="mobileMenu">
         <a href="#about" onclick="closeMobile()">About</a>
@@ -84,7 +91,7 @@
                         focused on clean architecture, robust REST APIs, and modern full-stack solutions.
                     </p>
                     <div class="hero-actions">
-                        <a href="{{ url_for('static', filename='assets/resume.pdf') }}"  class="btn-primary" download>Download Resume     </a>
+                        <a href="{{ url_for('static', filename='assets/resume.pdf') }}" class="btn-primary" download>Download Resume</a>
                         <a href="#contact" class="btn-secondary">
                             Let's talk
                             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -114,13 +121,10 @@
                 <div class="about-grid">
                     <div class="about-image-wrap">
                         <div class="about-image-frame cursor-reveal" id="revealContainer">
-                            <img src="{{ url_for('static', filename='assets/ironman.jpg') }}"
-                                 class="front-img" id="frontImg" alt="Iron Man">
-                            <img src="{{ url_for('static', filename='assets/aftab.png') }}"
-                                 class="back-img" alt="Aftab Ahmed A">
+                            <img src="{{ url_for('static', filename='assets/ironman.jpg') }}" class="front-img" id="frontImg" alt="Iron Man">
+                            <img src="{{ url_for('static', filename='assets/aftab.png') }}" class="back-img" alt="Aftab Ahmed A">
                             <div class="about-accent-card">🖱️ Touch me if you can!!!!!</div>
                         </div>
-                       
                     </div>
                     <div>
                         <h2 class="about-heading">
@@ -210,7 +214,7 @@
                         <div class="project-body">
                             <div class="project-tags"><span class="project-tag">Flask</span><span class="project-tag">Three.js</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span></div>
                             <h3 class="project-title">Cinematic Portfolio</h3>
-                            <p class="project-desc">Cinematic portfolio with video intro, 3D football, glassmorphism, and responsive design.</p>
+                            <p class="project-desc">Cinematic portfolio with animated intro, 3D football, glassmorphism, and responsive design.</p>
                             <div class="project-links">
                                 <a href="#" class="project-link primary">Live Demo →</a>
                                 <a href="#" class="project-link secondary">GitHub</a>
@@ -278,9 +282,7 @@
                         <div class="edu-icon">📘</div>
                         <div class="edu-degree">SSLC</div>
                         <div class="edu-school">
-                            <a href="https://schools.org.in/vellore/33041703423/mazharul-uloom-hr-sec-school.html" target="_blank">
-                                Mazharul Uloom HR Sec School
-                            </a>
+                            <a href="https://schools.org.in/vellore/33041703423/mazharul-uloom-hr-sec-school.html" target="_blank">Mazharul Uloom HR Sec School</a>
                         </div>
                         <div class="edu-year">2020 · Ambur, Tamil Nadu</div>
                     </div>
@@ -288,9 +290,7 @@
                         <div class="edu-icon">🔬</div>
                         <div class="edu-degree">2nd PUC – PCME</div>
                         <div class="edu-school">
-                            <a href="https://www.facebook.com/p/Government-pre-university-college-for-boys-malleshwaram-100064031910953/" target="_blank">
-                                Govt PU College for Boys
-                            </a>
+                            <a href="https://www.facebook.com/p/Government-pre-university-college-for-boys-malleshwaram-100064031910953/" target="_blank">Govt PU College for Boys</a>
                         </div>
                         <div class="edu-year">2021 – 2022 · Bangalore, Karnataka</div>
                     </div>
@@ -298,9 +298,7 @@
                         <div class="edu-icon">🎓</div>
                         <div class="edu-degree">Bachelor of Computer Applications (BCA)</div>
                         <div class="edu-school">
-                            <a href="https://www.mqidegreecollege.com" target="_blank">
-                                MQI Degree College
-                            </a>
+                            <a href="https://www.mqidegreecollege.com" target="_blank">MQI Degree College</a>
                         </div>
                         <div class="edu-year">2023 – 2026 · Bangalore · CGPA: 8.67/10</div>
                     </div>
@@ -308,51 +306,50 @@
             </div>
         </section>
 
-      <!-- CONTACT -->
-<section id="contact">
-    <div class="section">
-        <div class="contact-grid">
-            <div>
-                <span class="section-label">Let's Connect</span>
-                <h2 class="contact-heading">Ready to build<br />something amazing?</h2>
-                <p class="contact-body">I'm a passionate Full-Stack Developer and BCA graduate focused on building modern web applications, REST APIs, and scalable software solutions. I'm currently open to internships, freelance projects, and full-time developer opportunities.</p>
-                <div class="contact-links">
-                    <a href="mailto:affu0420@gmail.com" class="contact-link-item"><span class="contact-link-label">affu0420@gmail.com</span></a>
-                    <a href="https://www.linkedin.com/in/aftabahmed04" target="_blank" class="contact-link-item"><span class="contact-link-label">LinkedIn Profile</span></a>
-                    <a href="https://github.com/aftab04-git" target="_blank" class="contact-link-item"><span class="contact-link-label">GitHub Portfolio</span></a>
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="section">
+                <div class="contact-grid">
+                    <div>
+                        <span class="section-label">Let's Connect</span>
+                        <h2 class="contact-heading">Ready to build<br />something amazing?</h2>
+                        <p class="contact-body">I'm a passionate Full-Stack Developer and BCA graduate focused on building modern web applications, REST APIs, and scalable software solutions. I'm currently open to internships, freelance projects, and full-time developer opportunities.</p>
+                        <div class="contact-links">
+                            <a href="mailto:affu0420@gmail.com" class="contact-link-item"><span class="contact-link-label">affu0420@gmail.com</span></a>
+                            <a href="https://www.linkedin.com/in/aftabahmed04" target="_blank" class="contact-link-item"><span class="contact-link-label">LinkedIn Profile</span></a>
+                            <a href="https://github.com/aftab04-git" target="_blank" class="contact-link-item"><span class="contact-link-label">GitHub Portfolio</span></a>
+                        </div>
+                    </div>
+                    <div>
+                        <form class="contact-form" onsubmit="handleSubmit(event)">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="name">Full Name</label>
+                                    <input class="form-input" type="text" id="name" name="name" placeholder="Enter your name" required />
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="email">Email Address</label>
+                                    <input class="form-input" type="email" id="email" name="email" placeholder="example@gmail.com" required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="subject">Subject</label>
+                                <input class="form-input" type="text" id="subject" name="subject" placeholder="Job Opportunity, Project Discussion, Collaboration..." />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="message">Message</label>
+                                <textarea class="form-textarea" id="message" name="message" placeholder="Tell me about your project, internship, or opportunity..." required></textarea>
+                            </div>
+                            <button type="submit" class="form-submit">Send Message</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div>
-                <form class="contact-form" onsubmit="handleSubmit(event)">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label" for="name">Full Name</label>
-                            <input class="form-input" type="text" id="name" name="name" placeholder="Enter your name" required />
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="email">Email Address</label>
-                            <input class="form-input" type="email" id="email" name="email" placeholder="example@gmail.com" required />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="subject">Subject</label>
-                        <input class="form-input" type="text" id="subject" name="subject" placeholder="Job Opportunity, Project Discussion, Collaboration..." />
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="message">Message</label>
-                        <textarea class="form-textarea" id="message" name="message" placeholder="Tell me about your project, internship, or opportunity..." required></textarea>
-                    </div>
-                    <button type="submit" class="form-submit">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
-               <!-- ===== FOOTER ===== -->
+        <!-- FOOTER -->
         <footer>
             <div class="footer-inner">
-                <!-- TOP: Logo, Copyright, Social Links -->
                 <div class="footer-top">
                     <a class="footer-logo" href="#hero">Aftab Ahmed A</a>
                     <p class="footer-copy">© 2025 Aftab Ahmed A. All rights reserved.</p>
@@ -362,141 +359,44 @@
                         <a href="https://www.instagram.com/affu04fox/" target="_blank">Instagram</a>
                     </div>
                 </div>
-
-                <!-- BOTTOM: 8 Language Columns (side by side) -->
                 <div class="footer-columns">
-                    <!-- English -->
                     <div class="lang-col" style="animation-delay: 0s;">
                         <div class="lang-col-header">🇬🇧 English</div>
-                        <ul class="lang-col-list">
-                            <li>Hardworking</li>
-                            <li>Skilled</li>
-                            <li>Creative</li>
-                            <li>Problem Solver</li>
-                            <li>Team Player</li>
-                            <li>Adaptable</li>
-                            <li>Passionate</li>
-                            <li>Dedicated</li>
-                            <li>Reliable</li>
-                        </ul>
+                        <ul class="lang-col-list"><li>Hardworking</li><li>Skilled</li><li>Creative</li><li>Problem Solver</li><li>Team Player</li><li>Adaptable</li><li>Passionate</li><li>Dedicated</li><li>Reliable</li></ul>
                     </div>
-
-                    <!-- Tamil -->
                     <div class="lang-col" style="animation-delay: 0.15s;">
                         <div class="lang-col-header">🇮🇳 தமிழ்</div>
-                        <ul class="lang-col-list">
-                            <li>கடின உழைப்பாளி</li>
-                            <li>திறமையான</li>
-                            <li>படைப்பாற்றல்</li>
-                            <li>பிரச்சினை தீர்ப்பவர்</li>
-                            <li>குழு வீரர்</li>
-                            <li>தகவமைப்பு</li>
-                            <li>ஆர்வமுள்ள</li>
-                            <li>அர்ப்பணிப்பு</li>
-                            <li>நம்பகமான</li>
-                        </ul>
+                        <ul class="lang-col-list"><li>கடின உழைப்பாளி</li><li>திறமையான</li><li>படைப்பாற்றல்</li><li>பிரச்சினை தீர்ப்பவர்</li><li>குழு வீரர்</li><li>தகவமைப்பு</li><li>ஆர்வமுள்ள</li><li>அர்ப்பணிப்பு</li><li>நம்பகமான</li></ul>
                     </div>
-
-                    <!-- Urdu -->
                     <div class="lang-col" style="animation-delay: 0.30s;">
                         <div class="lang-col-header">🇵🇰 اردو</div>
-                        <ul class="lang-col-list">
-                            <li>محنتی</li>
-                            <li>ہنرمند</li>
-                            <li>تخلیقی</li>
-                            <li>مسلہ حل کرنے والا</li>
-                            <li>ٹیم پلیئر</li>
-                            <li>موافق</li>
-                            <li>پرجوش</li>
-                            <li>سرشار</li>
-                            <li>قابل اعتماد</li>
-                        </ul>
+                        <ul class="lang-col-list"><li>محنتی</li><li>ہنرمند</li><li>تخلیقی</li><li>مسلہ حل کرنے والا</li><li>ٹیم پلیئر</li><li>موافق</li><li>پرجوش</li><li>سرشار</li><li>قابل اعتماد</li></ul>
                     </div>
-
-                    <!-- Malayalam -->
                     <div class="lang-col" style="animation-delay: 0.45s;">
                         <div class="lang-col-header">🇮🇳 മലയാളം</div>
-                        <ul class="lang-col-list">
-                            <li>കഠിനാധ്വാനി</li>
-                            <li>വിദഗ്ദ്ധൻ</li>
-                            <li>ക്രിയാത്മകൻ</li>
-                            <li>പ്രശ്നപരിഹാരി</li>
-                            <li>ടീം പ്ലെയർ</li>
-                            <li>പൊരുത്തപ്പെടുന്ന</li>
-                            <li>അഭിനിവേശമുള്ള</li>
-                            <li>സമർപ്പിതൻ</li>
-                            <li>വിശ്വസനീയൻ</li>
-                        </ul>
+                        <ul class="lang-col-list"><li>കഠിനാധ്വാനി</li><li>വിദഗ്ദ്ധൻ</li><li>ക്രിയാത്മകൻ</li><li>പ്രശ്നപരിഹാരി</li><li>ടീം പ്ലെയർ</li><li>പൊരുത്തപ്പെടുന്ന</li><li>അഭിനിവേശമുള്ള</li><li>സമർപ്പിതൻ</li><li>വിശ്വസനീയൻ</li></ul>
                     </div>
-
-                    <!-- Hindi -->
                     <div class="lang-col" style="animation-delay: 0.60s;">
                         <div class="lang-col-header">🇮🇳 हिन्दी</div>
-                        <ul class="lang-col-list">
-                            <li>मेहनती</li>
-                            <li>कुशल</li>
-                            <li>रचनात्मक</li>
-                            <li>समस्या समाधानकर्ता</li>
-                            <li>टीम खिलाड़ी</li>
-                            <li>अनुकूलनीय</li>
-                            <li>भावुक</li>
-                            <li>समर्पित</li>
-                            <li>विश्वसनीय</li>
-                        </ul>
+                        <ul class="lang-col-list"><li>मेहनती</li><li>कुशल</li><li>रचनात्मक</li><li>समस्या समाधानकर्ता</li><li>टीम खिलाड़ी</li><li>अनुकूलनीय</li><li>भावुक</li><li>समर्पित</li><li>विश्वसनीय</li></ul>
                     </div>
-
-                    <!-- French -->
                     <div class="lang-col" style="animation-delay: 0.75s;">
                         <div class="lang-col-header">🇫🇷 Français</div>
-                        <ul class="lang-col-list">
-                            <li>Travailleur</li>
-                            <li>Compétent</li>
-                            <li>Créatif</li>
-                            <li>Résolveur de problèmes</li>
-                            <li>Esprit d'équipe</li>
-                            <li>Adaptable</li>
-                            <li>Passionné</li>
-                            <li>Dévoué</li>
-                            <li>Fiable</li>
-                        </ul>
+                        <ul class="lang-col-list"><li>Travailleur</li><li>Compétent</li><li>Créatif</li><li>Résolveur de problèmes</li><li>Esprit d'équipe</li><li>Adaptable</li><li>Passionné</li><li>Dévoué</li><li>Fiable</li></ul>
                     </div>
-
-                    <!-- Kannada (NEW – before Arabic) -->
                     <div class="lang-col" style="animation-delay: 0.90s;">
                         <div class="lang-col-header">🇮🇳 ಕನ್ನಡ</div>
-                        <ul class="lang-col-list">
-                            <li>ಕಠಿಣ ಕೆಲಸಗಾರ</li>
-                            <li>ನುರಿತ</li>
-                            <li>ಸೃಜನಶೀಲ</li>
-                            <li>ಸಮಸ್ಯೆ ಪರಿಹಾರಕ</li>
-                            <li>ತಂಡದ ಆಟಗಾರ</li>
-                            <li>ಹೊಂದಿಕೊಳ್ಳುವ</li>
-                            <li>ಉತ್ಸಾಹಿ</li>
-                            <li>ಸಮರ್ಪಿತ</li>
-                            <li>ವಿಶ್ವಾಸಾರ್ಹ</li>
-                        </ul>
+                        <ul class="lang-col-list"><li>ಕಠಿಣ ಕೆಲಸಗಾರ</li><li>ನುರಿತ</li><li>ಸೃಜನಶೀಲ</li><li>ಸಮಸ್ಯೆ ಪರಿಹಾರಕ</li><li>ತಂಡದ ಆಟಗಾರ</li><li>ಹೊಂದಿಕೊಳ್ಳುವ</li><li>ಉತ್ಸಾಹಿ</li><li>ಸಮರ್ಪಿತ</li><li>ವಿಶ್ವಾಸಾರ್ಹ</li></ul>
                     </div>
-
-                    <!-- Arabic -->
                     <div class="lang-col" style="animation-delay: 1.05s;">
                         <div class="lang-col-header">🇸🇦 العربية</div>
-                        <ul class="lang-col-list">
-                            <li>مجتهد</li>
-                            <li>ماهر</li>
-                            <li>مبدع</li>
-                            <li>محل مشاكل</li>
-                            <li>لاعب فريق</li>
-                            <li>قابل للتكيف</li>
-                            <li>شغوف</li>
-                            <li>مخلص</li>
-                            <li>موثوق</li>
-                        </ul>
+                        <ul class="lang-col-list"><li>مجتهد</li><li>ماهر</li><li>مبدع</li><li>محل مشاكل</li><li>لاعب فريق</li><li>قابل للتكيف</li><li>شغوف</li><li>مخلص</li><li>موثوق</li></ul>
                     </div>
                 </div>
             </div>
         </footer>
 
-    </div> <!-- end portfolioContent -->
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>

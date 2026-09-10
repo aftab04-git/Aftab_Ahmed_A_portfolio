@@ -4,13 +4,9 @@ import requests
 
 app = Flask(__name__)
 
-# -------------------- ROUTES --------------------
+# -------------------- ROUTE --------------------
 @app.route('/')
-def intro():
-    return render_template('intro.html')
-
-@app.route('/portfolio')
-def portfolio():
+def index():
     return render_template('index.html')
 
 # -------------------- CONTACT FORM (Brevo API) --------------------
