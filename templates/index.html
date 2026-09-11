@@ -4,19 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aftab Ahmed – Full-Stack Developer</title>
+    <link rel="icon" href="data:," />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
 </head>
 <body>
 
-    <!-- ===== ENTER SPLASH ===== -->
+    <!-- Enter splash -->
     <div id="enterOverlay">
         <h1>I dare you</h1>
         <p>Do not touch me!!!</p>
     </div>
 
-    <!-- ===== CINEMATIC BACKGROUND ===== -->
+    <!-- Cinematic background layers -->
     <div id="cinematic-bg">
         <div id="starfield"></div>
         <div class="light-orbs">
@@ -32,7 +33,7 @@
         <div class="floor-glow"></div>
     </div>
 
-    <!-- ===== LOADER OVERLAY ===== -->
+    <!-- Loader -->
     <div id="loaderOverlay">
         <div class="loader-balls">
             <span>⚽</span><span>⚽</span><span>⚽</span>
@@ -44,7 +45,7 @@
         </div>
     </div>
 
-    <!-- ===== HERO OVERLAY (typing name) ===== -->
+    <!-- Hero name typing overlay -->
     <div id="heroOverlay" class="hidden">
         <div id="heroTextContainer">
             <h1 id="heroName"></h1>
@@ -53,7 +54,7 @@
         <div class="spotlight-sweep"></div>
     </div>
 
-    <!-- ===== NAVBAR ===== -->
+    <!-- Navbar -->
     <nav id="navbar">
         <a class="nav-logo" href="#" id="navLogo">Aftab<span>.</span></a>
         <ul class="nav-links">
@@ -78,6 +79,7 @@
         </div>
     </nav>
 
+    <!-- Mobile menu -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="#about" onclick="closeMobile()">About</a>
         <a href="#skills" onclick="closeMobile()">Skills</a>
@@ -87,10 +89,10 @@
         <a href="#contact" onclick="closeMobile()">Contact</a>
     </div>
 
-    <!-- ===== PORTFOLIO CONTENT ===== -->
+    <!-- Portfolio content -->
     <div id="portfolioContent" class="hidden">
 
-        <!-- HERO SECTION -->
+        <!-- Hero section -->
         <section id="hero">
             <div class="hero-inner">
                 <div>
@@ -116,7 +118,9 @@
                 </div>
                 <div class="hero-image-wrap">
                     <div class="hero-image-frame">
-                        <div id="football-canvas"></div>
+                        <video id="hero-video" muted autoplay loop playsinline preload="metadata">
+                            <source src="{{ url_for('static', filename='assets/video.mp4') }}" type="video/mp4" />
+                        </video>
                     </div>
                     <div class="stat-card stat-1">
                         <div class="stat-card-num">2+</div>
@@ -130,7 +134,7 @@
             </div>
         </section>
 
-        <!-- ABOUT -->
+        <!-- About section -->
         <section id="about">
             <div class="section">
                 <span class="section-label">About me</span>
@@ -167,7 +171,7 @@
             </div>
         </section>
 
-        <!-- SKILLS -->
+        <!-- Skills section -->
         <section id="skills">
             <div class="section">
                 <span class="section-label">Technical skills</span>
@@ -190,7 +194,7 @@
             </div>
         </section>
 
-        <!-- PROJECTS -->
+        <!-- Projects section -->
         <section id="projects">
             <div class="section">
                 <div class="projects-header">
@@ -211,7 +215,7 @@
                             <p class="project-desc">Full-stack e-commerce platform with secure payment gateway, real-time cart tracking, user session management, and scalable microservices.</p>
                             <div class="project-links">
                                 <a href="https://amazon-clone-affu04-pi-swart.vercel.app/" target="_blank" class="project-link primary">Live Demo →</a>
-                                <a href="#" class="project-link secondary">GitHub</a>
+                                <a href="https://github.com/aftab04-git?tab=repositories" target="_blank" class="project-link secondary">GitHub</a>
                             </div>
                         </div>
                     </div>
@@ -225,7 +229,7 @@
                             <p class="project-desc">Secure digital voting portal with multi-tiered identity verification, admin dashboard, and PDF results.</p>
                             <div class="project-links">
                                 <a href="#" class="project-link primary">Live Demo →</a>
-                                <a href="#" class="project-link secondary">GitHub</a>
+                                <a href="https://github.com/aftab04-git?tab=repositories" target="_blank" class="project-link secondary">GitHub</a>
                             </div>
                         </div>
                     </div>
@@ -239,7 +243,7 @@
                             <p class="project-desc">Cinematic portfolio with animated intro, 3D football, glassmorphism, and responsive design.</p>
                             <div class="project-links">
                                 <a href="#" class="project-link primary">Live Demo →</a>
-                                <a href="#" class="project-link secondary">GitHub</a>
+                                <a href="https://github.com/aftab04-git?tab=repositories" target="_blank" class="project-link secondary">GitHub</a>
                             </div>
                         </div>
                     </div>
@@ -247,7 +251,7 @@
             </div>
         </section>
 
-        <!-- JOURNEY -->
+        <!-- Journey timeline -->
         <section id="journey">
             <div class="section">
                 <span class="section-label">Journey</span>
@@ -294,7 +298,7 @@
             </div>
         </section>
 
-        <!-- EDUCATION -->
+        <!-- Education -->
         <section id="education">
             <div class="section">
                 <span class="section-label">Education</span>
@@ -328,7 +332,7 @@
             </div>
         </section>
 
-        <!-- CONTACT -->
+        <!-- Contact -->
         <section id="contact">
             <div class="section">
                 <div class="contact-grid">
@@ -369,7 +373,7 @@
             </div>
         </section>
 
-        <!-- FOOTER -->
+        <!-- Footer -->
         <footer>
             <div class="footer-inner">
                 <div class="footer-top">
@@ -424,13 +428,12 @@
 
     </div>
 
-    <!-- ===== BACKGROUND MUSIC ===== -->
+    <!-- Background music -->
     <audio id="bgMusic" src="{{ url_for('static', filename='assets/music.mp3') }}" loop></audio>
 
-    <!-- ===== MUSIC TOGGLE ===== -->
+    <!-- Music toggle -->
     <button id="musicToggle" aria-label="Toggle music" type="button">🔊</button>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
